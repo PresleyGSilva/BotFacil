@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinoflick Afiliados</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1>BotFácil Afiliados</h1>
+
+    <!-- QR Code -->
+    <div id="qr-section">
+        <h2>Escaneie o QR Code para conectar</h2>
+        <div id="qr-code">
+            <p>Aguardando QR Code...</p>
+        </div>
+        <p id="connection-status">Status: Aguardando Conexão...</p>
+    </div>
+
+    <!-- Configurações -->
+    <div id="configurations">
+        <h2>Configurações de Respostas</h2>
+        <div class="response-config">
+            <label for="trigger">Gatilho:</label>
+            <input type="text" class="trigger" placeholder="Digite o gatilho (ex: oi)">
+
+            <label for="message">Mensagem:</label>
+            <textarea class="message" rows="2" placeholder="Digite a mensagem de resposta"></textarea>
+
+            <label for="audio">Áudio:</label>
+            <input type="file" class="audio" accept="audio/*">
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <button id="addConfig">Adicionar Nova Resposta</button>
+    <button id="saveConfig">Salvar Configurações</button>
+
+    <script>
+        // Adiciona uma nova configuração dinâmica para respostas
+        document.getElementById('addConfig').addEventListener('click', () => {
+            const container = document.getElementById('configurations');
+            const newConfig = document.createElement('div');
+            newConfig.classList.add('response-config');
+
+            newConfig.innerHTML = `
+                <label for="trigger">Gatilho:</label>
+                <input type="text" class="trigger" placeholder="Digite o gatilho (ex: oi)">
+
+                <label for="message">Mensagem:</label>
+                <textarea class="message" rows="2" placeholder="Digite a mensagem de resposta"></textarea>
+
+                <label for="audio">Áudio:</label>
+                <input type="file" class="audio" accept="audio/*">
+            `;
+
+            container.appendChild(newConfig);
+        });
+
+        // Salva as configurações e envia para o backend
+        document.getElementById('saveConfig').addEventListener('click', () => {
+            const responses = [];
+            document.querySelectorAll('.response-config').forEach((config) => {
+                const trigger = config.querySelector('.trigger').value;
+                const message = config.querySelector('.message').value;
+                const audioInput = config.querySelector('.audio');
+                const fileName = audioInput.files.length > 0 ? audioInput.files[0].name : null;
+
+                if (trigger) {
+                    if (message) {
+                        responses.push({ trigger, message, type: 'text' });
+                    }
+                    if (fileName) {
+                        responses.push({ trigger, fileName, type: 'audio' });
+                    }
+                }
+            });
+
+            // Envia as configurações para o backend via Electron
+            window.electron.send('save-config', { responses });
+        });
+
+        // Recebe e exibe o QR Code
+        window.electron.receive('qr-code', (qr) => {
+            try {
+                // Verifica se o QR Code foi recebido corretamente
+                if (!qr) {
+                    throw new Error('QR Code não recebido ou inválido');
+                }
+
+                console.log('QR Code recebido no frontend:', qr);  // Verifique o QR Code recebido
+
+                const qrImage = document.createElement('img');
+                qrImage.src = qr;  // Aqui a imagem é gerada a partir do base64
+
+                const qrCodeContainer = document.getElementById('qr-code');
+                
+                // Limpa o conteúdo anterior e insere a imagem do QR Code
+                qrCodeContainer.innerHTML = '';
+                qrCodeContainer.appendChild(qrImage);
+            } catch (error) {
+                console.error('Erro ao exibir QR Code:', error);
+                const qrCodeContainer = document.getElementById('qr-code');
+                qrCodeContainer.innerHTML = '<p>Erro ao carregar QR Code.</p>';  // Exibe uma mensagem de erro no caso de falha
+            }
+        });
+
+        // Atualiza o status da conexão
+        window.electron.receive('status', (status) => {
+            try {
+                const statusElement = document.getElementById('connection-status');
+                
+                // Verifica se o status é válido
+                if (status && typeof status === 'string') {
+                    statusElement.textContent = `Status: ${status}`;
+                } else {
+                    throw new Error('Status inválido recebido');
+                }
+            } catch (error) {
+                console.error('Erro ao atualizar status:', error);
+                const statusElement = document.getElementById('connection-status');
+                statusElement.textContent = 'Status: Erro ao carregar status';
+            }
+        });
+    </script>
+</body>
+</html>

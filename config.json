@@ -1,0 +1,54 @@
+{
+  "responses": [
+    {
+      "trigger": "olá",
+      "message": "Olá! Obrigado por entrar em contato conosco hoje. Estou empolgado em discutir como nosso serviço de streaming pode atender às suas necessidades. Como posso ajudá-lo?",
+      "type": "text"
+    },
+    {
+      "trigger": "interessado",
+      "message": "Ótimo! Nossa plataforma de streaming oferece uma experiência completa de entretenimento, com uma biblioteca vasta e variada de conteúdos, incluindo filmes, séries, programas de TV e muito mais. Além disso, oferecemos recursos exclusivos, como transmissões ao vivo de eventos especiais e acesso antecipado a lançamentos exclusivos. Como você geralmente consome conteúdo de entretenimento?",
+      "type": "text"
+    },
+    {
+      "trigger": "assistir filmes e séries",
+      "message": "Compreendo. O que diferencia nossa plataforma é o compromisso com a qualidade e a diversidade do conteúdo. Nós nos associamos com os principais estúdios de produção para garantir que nossos assinantes tenham acesso aos últimos lançamentos, bem como a clássicos do cinema e conteúdos exclusivos que não estão disponíveis em nenhum outro lugar. Além disso, nossa interface é projetada para ser intuitiva e fácil de usar, permitindo que você encontre rapidamente o que deseja assistir.",
+      "type": "text"
+    },
+    {
+      "trigger": "preço",
+      "message": "Entendo sua preocupação com o custo. Oferecemos uma variedade de planos de assinatura para atender às diferentes necessidades e orçamentos dos nossos clientes. Nossos planos são flexíveis e acessíveis, com opções que incluem recursos como streaming em alta definição, reprodução em vários dispositivos simultaneamente. Além disso, oferecemos um período de teste gratuito para que você possa experimentar nossa plataforma sem nenhum compromisso. Isso ajuda a garantir que você esteja totalmente satisfeito com sua escolha antes de se comprometer com um plano de assinatura.",
+      "type": "text"
+    },
+    {
+      "trigger": "teste gratuito",
+      "message": "Fantástico! Estou feliz em ouvir isso. Vou te enviar o teste gratuito e fornecer instruções sobre como começar a explorar nossa vasta biblioteca de conteúdo. Depois que o período de teste terminar, estarei à disposição para discutir os diferentes planos de assinatura disponíveis e ajudá-lo a selecionar aquele que melhor atende às suas necessidades de entretenimento.",
+      "type": "text"
+    },
+    {
+      "trigger": "gostei da plataforma",
+      "message": "Eu disse que não iria se arrepender, estamos muito feliz que gostou, agora vou te passar os planos e você vê qual se encaixa melhor atualmente no seu orçamento ok?",
+      "type": "text"
+    },
+    {
+      "trigger": "planos de assinatura",
+      "message": "Temos o anual com 2 telas saindo por R$ 149,90, o 2 anos com 2 telas também saindo por R$ 249,90 e temos o campeão de vendas, que é o que mais vale a pena financeiramente, o de 3 anos com 2 telas saindo por apenas R$ 349,90, qual você achou mais interessante?",
+      "type": "text"
+    },
+    {
+      "trigger": "149,90",
+      "message": "Sim, ele é o mais econômico que temos. Vou te mandar o link para você efetuar a compra. Pode ficar tranquilo, todos seus dados estão protegidos. Assim que efetuar o pagamento, chegará um e-mail com seu acesso e as instruções para instalar em todos os seus aparelhos, ok?",
+      "type": "text"
+    },
+    {
+      "trigger": "link de compra",
+      "message": "Segue o link: (seu link de afiliado)",
+      "type": "text"
+    },
+    {
+      "trigger": "obrigado",
+      "message": "De nada! Se tiver mais alguma dúvida ou precisar de ajuda, estarei à disposição. Aproveite sua experiência com nossa plataforma de streaming!",
+      "type": "text"
+    }
+  ]
+}

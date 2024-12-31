@@ -1,0 +1,6 @@
+{
+  "watch": ["src", "main.js", "config"],
+  "ext": "js,json",
+  "ignore": ["node_modules/*", "dist/*"],
+  "exec": "electron-forge start"
+}
